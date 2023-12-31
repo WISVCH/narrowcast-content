@@ -70,11 +70,20 @@ body {
     grid-row: 1;
     grid-column-start: 2;
     grid-column-end: 4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .title {
     grid-row: 1;
     grid-column: 3;
+}
+
+.sub_text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .artist {
@@ -210,17 +219,17 @@ body {
     .main_text {
         grid-row: 2;
         grid-column-start: 1;
-        grid-column-end: 3;
+        grid-column-end: 4;
     }
 
     .title {
         grid-row: 2;
-        grid-column: 2;
+        grid-column-start: 2;
     }
 
     .artist {
         grid-row: 3;
         grid-column-start: 1;
-        grid-column-end: 3;
+        grid-column-end: 4;
     }
 }
