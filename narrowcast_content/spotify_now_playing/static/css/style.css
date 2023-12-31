@@ -18,7 +18,7 @@ body {
     width: 80%;
     padding: 20px;
     display: grid;
-    grid-template-rows: 42px 42px;
+    grid-template-rows: 46px 38px;
     grid-template-columns: 100px 30px auto;
     row-gap: 16px;
     column-gap: 25px;
