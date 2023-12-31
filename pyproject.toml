@@ -4,6 +4,7 @@ version = "1.0.0"
 description = "Various screens to show on a narrowcast presenter."
 dependencies = [
     "flask",
+    "spotipy",
 ]
 
 [build-system]

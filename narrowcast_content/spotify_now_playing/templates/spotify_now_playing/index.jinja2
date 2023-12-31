@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spotify Now PLaying</title>
+    <link rel="stylesheet" href="{{ url_for('spotify_now_playing.static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container song">
+    <div class="album_cover main_image">
+        <img alt="album cover">
+    </div>
+    <div class="playing_symbol">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="title main_text">Title</div>
+    <div class="artist sub_text">Artist</div>
+</div>
+<div class="container unauthorized">
+    <div class="spotify_logo main_image">
+        <img src="{{ url_for('spotify_now_playing.static', filename='spotify_icon.svg') }}">
+    </div>
+    <div class="unauthorized_text main_text">Unauthorized</div>
+</div>
+<div class="container not_playing">
+    <div class="spotify_logo main_image">
+        <img src="{{ url_for('spotify_now_playing.static', filename='spotify_icon.svg') }}">
+    </div>
+    <div class="not_playing_text main_text">Not Playing</div>
+</div>
+
+<script src="{{ url_for('spotify_now_playing.static', filename='js/index.js') }}"></script>
+</body>
+</html>

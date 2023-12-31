@@ -8,3 +8,7 @@ DEBUG = True
 
 # Secret key for session management. You can generate random strings here:
 SECRET_KEY = 'CHANGE_ME'
+
+SPOTIPY_CLIENT_ID='CHANGE_ME'
+SPOTIPY_CLIENT_SECRET='CHANGE_ME'
+SPOTIPY_REDIRECT_URI='http://localhost:5000/spotify_now_playing/api_callback'

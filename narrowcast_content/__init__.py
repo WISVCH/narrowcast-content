@@ -18,3 +18,7 @@ if not app.debug:
 from narrowcast_content.buienradar_graph import buienradar_graph
 
 app.register_blueprint(buienradar_graph)
+
+from narrowcast_content.spotify_now_playing import spotify_now_playing
+
+app.register_blueprint(spotify_now_playing)
