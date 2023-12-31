@@ -18,7 +18,4 @@ def show():
         else:
             break
 
-    print(request.args)
-    print(url_sizes)
-
     return render_template('combine/index.jinja2', url_sizes=url_sizes)
