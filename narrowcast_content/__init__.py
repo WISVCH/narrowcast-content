@@ -26,3 +26,8 @@ app.register_blueprint(spotify_now_playing)
 from narrowcast_content.combine import combine
 
 app.register_blueprint(combine)
+
+
+from narrowcast_content.image import image
+
+app.register_blueprint(image)
