@@ -1,9 +1,12 @@
-from flask import request, abort, render_template
-from narrowcast_content import app
+from flask import Blueprint, render_template, abort, request
+
+buienradar = Blueprint('buienradar', __name__,
+                       template_folder='templates', static_folder='static',
+                       url_prefix='/buienradar')
 
 
-@app.route('/buienradar')
-def buienradar():
+@buienradar.route('/')
+def show():
     lat = request.args.get('lat')
     lon = request.args.get('lon')
 
@@ -20,4 +23,4 @@ def buienradar():
     except ValueError:
         abort(400, 'Cannot convert lon to float')
 
-    return render_template('buienradar/index.jinja2', lat=lat, lon=lon)
+    return render_template('index.jinja2', lat=lat, lon=lon)
