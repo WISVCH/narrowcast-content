@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="{{ url_for('buienradar_graph.static', filename='css/style.css') }}">
+</head>
+<body>
+<div>
+    <canvas id="rainfallChart"></canvas>
+    <div class="source">Source: Buienradar<sup>®</sup></div>
+</div>
+
+<script type="text/javascript">
+    const lat = {{ lat|tojson|safe }}
+    const lon = {{ lon|tojson|safe }}
+</script>
+
+<script src="{{ url_for('buienradar_graph.static', filename='js/libs/chart.js') }}"></script>
+<script src="{{ url_for('buienradar_graph.static', filename='js/libs/moment.js') }}"></script>
+<script src="{{ url_for('buienradar_graph.static', filename='js/libs/chartjs-adapter-moment.js') }}"></script>
+<script src="{{ url_for('buienradar_graph.static', filename='js/libs/chartjs-plugin-annotation.js') }}"></script>
+
+<script src="{{ url_for('buienradar_graph.static', filename='js/index.js') }}"></script>
+</body>
+</html>

@@ -15,6 +15,6 @@ if not app.debug:
     app.logger.addHandler(file_handler)
     app.logger.info('errors')
 
-from narrowcast_content.buienradar import buienradar
+from narrowcast_content.buienradar_graph import buienradar_graph
 
-app.register_blueprint(buienradar)
+app.register_blueprint(buienradar_graph)

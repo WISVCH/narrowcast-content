@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, abort, request
 
-buienradar = Blueprint('buienradar', __name__,
-                       template_folder='templates', static_folder='static',
-                       url_prefix='/buienradar')
+buienradar_graph = Blueprint('buienradar_graph', __name__,
+                             template_folder='templates', static_folder='static',
+                             url_prefix='/buienradar_graph')
 
 
-@buienradar.route('/')
+@buienradar_graph.route('/')
 def show():
     lat = request.args.get('lat')
     lon = request.args.get('lon')
