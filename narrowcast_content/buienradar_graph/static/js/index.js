@@ -129,7 +129,7 @@ async function createChart() {
             }],
         },
         options: {
-            aspectRatio: 2.5,
+            aspectRatio: 3.0,
             scales: {
                 y: {
                     beginAtZero: true,

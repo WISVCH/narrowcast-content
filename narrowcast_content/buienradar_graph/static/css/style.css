@@ -4,6 +4,8 @@ html {
 
 body {
     margin: 5px 50px 10px 20px;
+    padding: 60px;
+    background-color: #ffffff;
 }
 
 .source {
