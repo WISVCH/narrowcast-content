@@ -22,3 +22,7 @@ app.register_blueprint(buienradar_graph)
 from narrowcast_content.spotify_now_playing import spotify_now_playing
 
 app.register_blueprint(spotify_now_playing)
+
+from narrowcast_content.combine import combine
+
+app.register_blueprint(combine)
