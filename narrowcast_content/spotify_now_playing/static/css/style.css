@@ -66,7 +66,7 @@ body {
     font-size: 2em;
     font-weight: bold;
     position: relative;
-    bottom: -6px;
+    bottom: -8px;
     grid-row: 1;
     grid-column-start: 2;
     grid-column-end: 4;
