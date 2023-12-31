@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, abort
 import logging
 from logging import Formatter, FileHandler
+
+from flask import Flask, request, abort, session
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -27,7 +28,20 @@ from narrowcast_content.combine import combine
 
 app.register_blueprint(combine)
 
-
 from narrowcast_content.image import image
 
 app.register_blueprint(image)
+
+tokens = app.config['TOKENS'].split()
+
+
+@app.before_request
+def check_auth():
+    if 'token' not in request.args and 'token' not in session:
+        abort(401, "Unauthorized")
+
+    if 'token' in request.args:
+        session['token'] = request.args['token']
+
+    if session['token'] not in tokens:
+        abort(401, "Unauthorized")
