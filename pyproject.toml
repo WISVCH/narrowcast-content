@@ -1,0 +1,11 @@
+[project]
+name = "narrowcast_content"
+version = "1.0.0"
+description = "Various screens to show on a narrowcast presenter."
+dependencies = [
+    "flask",
+]
+
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
