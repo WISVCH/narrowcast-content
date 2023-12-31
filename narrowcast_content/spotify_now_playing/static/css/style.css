@@ -187,6 +187,7 @@ body {
         grid-template-columns: 30px auto;
         row-gap: 16px;
         column-gap: 25px;
+        width: 60%;
     }
 
     .main_image {
