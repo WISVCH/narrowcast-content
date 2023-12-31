@@ -6,6 +6,25 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 
+@app.route('/buienradar')
+def buienradar():
+    lat = request.args.get('lat')
+    lon = request.args.get('lon')
+
+    if lat is None or lon is None:
+        abort(400, "Provide lat and lon parameters")
+
+    try:
+        lat = float(lat)
+    except ValueError:
+        abort(400, 'Cannot convert lat to float')
+
+    try:
+        lon = float(lon)
+    except ValueError:
+        abort(400, 'Cannot convert lon to float')
+
+    return render_template('buienradar/index.jinja2', lat=lat, lon=lon)
 
 
 if not app.debug:
