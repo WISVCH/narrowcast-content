@@ -23,4 +23,4 @@ def show():
     except ValueError:
         abort(400, 'Cannot convert lon to float')
 
-    return render_template('index.jinja2', lat=lat, lon=lon)
+    return render_template('buienradar_graph/index.jinja2', lat=lat, lon=lon)
