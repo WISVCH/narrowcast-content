@@ -1,4 +1,6 @@
-// Function to make the GET request
+/**
+ * Call the buienradar API to get the rain data
+ */
 async function fetchData() {
     try {
         const response = await fetch('https://graphdata.buienradar.nl/2.0/forecast/geo/RainHistoryForecast?lat=' + lat.toString() + '&lon=' + lon.toString());
@@ -9,6 +11,11 @@ async function fetchData() {
     }
 }
 
+/**
+ * Out of a list of moments, pick the closed to now, either in the future or in the past.
+ * @param momentList
+ * @returns {*}
+ */
 function findClosestMoment(momentList) {
     // Get the current moment
     const currentMoment = moment();
@@ -31,32 +38,11 @@ function findClosestMoment(momentList) {
     return closestMoment;
 }
 
-function timeToMoment(time) {
-    // Get the current moment
-    const currentMoment = moment();
-
-// Extract hours and minutes from the time string
-    const [hours, minutes] = time.split(':');
-
-// Set the time on the current moment
-    const transformedMoment = currentMoment.clone().set({
-        hour: parseInt(hours, 10),
-        minute: parseInt(minutes, 10),
-        second: 0,
-        milliseconds: 0
-    });
-
-    const options = [transformedMoment.clone().add(1, 'day'), transformedMoment.clone(), transformedMoment.clone().subtract(1, 'day')]
-
-    const closestMoment = findClosestMoment(options)
-
-    return closestMoment;
-}
-
+/**
+ * Get and parse the data from buienradar
+ */
 async function get_data() {
     const data = await fetchData();
-
-    // console.log(data)
 
     const graph_data = [];
 
@@ -71,6 +57,9 @@ async function get_data() {
 
 let myChart;
 
+/**
+ * Update the chart with new data from buienradar, and the new time
+ */
 async function updateChart() {
     const graph_data = await get_data();
 
@@ -98,7 +87,9 @@ async function updateChart() {
     myChart.update();
 }
 
-// Function to parse the data and create the chart
+/**
+ * Parse the data and create the chart
+ */
 async function createChart() {
     const graph_data = await get_data();
 

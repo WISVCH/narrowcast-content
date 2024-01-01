@@ -7,6 +7,10 @@ buienradar_graph = Blueprint('buienradar_graph', __name__,
 
 @buienradar_graph.route('/')
 def show():
+    """
+    Parse the lat and lon parameters, and render the buienradar graph, with those coordinates.
+    :return:
+    """
     lat = request.args.get('lat')
     lon = request.args.get('lon')
 
