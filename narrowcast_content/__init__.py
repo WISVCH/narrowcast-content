@@ -46,9 +46,3 @@ def check_auth():
 
     if session['token'] not in tokens:
         abort(401, "Unauthorized")
-
-
-@app.after_request
-def apply_caching(response):
-    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-    return response
