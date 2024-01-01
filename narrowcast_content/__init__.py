@@ -11,6 +11,7 @@ from narrowcast_content.spotify_now_playing import spotify_now_playing
 
 app = Flask(__name__)
 app.config.from_object('config')
+app.config.from_prefixed_env()
 
 if not app.debug:
     file_handler = FileHandler('error.log')
@@ -45,3 +46,9 @@ def check_auth():
 
     if session['token'] not in tokens:
         abort(401, "Unauthorized")
+
+
+@app.after_request
+def apply_caching(response):
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    return response
