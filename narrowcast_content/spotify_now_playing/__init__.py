@@ -1,8 +1,8 @@
 import time
 from datetime import datetime, timedelta
 
-from flask import Blueprint, render_template, abort, request, current_app, redirect, session, url_for, json
 import spotipy
+from flask import Blueprint, render_template, request, current_app, redirect, url_for
 
 spotify_now_playing = Blueprint('spotify_now_playing', __name__,
                                 template_folder='templates', static_folder='static',
@@ -20,6 +20,9 @@ prev_result_time = None
 
 @spotify_now_playing.route("/authorize")
 def authorize():
+    """
+    Redirect to spotify to get a token.
+    """
     # Don't reuse a SpotifyOAuth object because they store token info and you could leak user tokens if you reuse a SpotifyOAuth object
     sp_oauth = spotipy.oauth2.SpotifyOAuth(client_id=current_app.config['SPOTIPY_CLIENT_ID'],
                                            client_secret=current_app.config['SPOTIPY_CLIENT_SECRET'],
@@ -31,11 +34,18 @@ def authorize():
 
 @spotify_now_playing.route("/")
 def index():
+    """
+    Render the player page.
+    """
     return render_template("spotify_now_playing/index.jinja2")
 
 
 @spotify_now_playing.route("/currently_playing")
 def currently_playing():
+    """
+    Get the song that is currently playing, if anything is playing.
+    This is cached for 4 seconds.
+    """
     global prev_result, prev_result_time
 
     if prev_result and prev_result_time and datetime.now() - prev_result_time < timedelta(seconds=4):
@@ -69,11 +79,12 @@ def currently_playing():
     return result
 
 
-# authorization-code-flow Step 2.
-# Have your application request refresh and access tokens;
-# Spotify returns access and refresh tokens
 @spotify_now_playing.route("/api_callback")
 def api_callback():
+    """
+    Spotify callback. After getting the code, it will get a token and stroke it globally.
+    :return:
+    """
     # Don't reuse a SpotifyOAuth object because they store token info and you could leak user tokens if you reuse a SpotifyOAuth object
     sp_oauth = spotipy.oauth2.SpotifyOAuth(client_id=current_app.config['SPOTIPY_CLIENT_ID'],
                                            client_secret=current_app.config['SPOTIPY_CLIENT_SECRET'],
@@ -86,8 +97,10 @@ def api_callback():
     return redirect(url_for('spotify_now_playing.index'))
 
 
-# Checks to see if token is valid and gets a new token if not
 def get_token():
+    """
+    Checks to see if token is valid and gets a new token if not.
+    """
     token_valid = False
     global token_info
 
