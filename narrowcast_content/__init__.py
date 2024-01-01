@@ -32,6 +32,10 @@ from narrowcast_content.image import image
 
 app.register_blueprint(image)
 
+from narrowcast_content.pub_timer import pub_timer
+
+app.register_blueprint(pub_timer)
+
 tokens = app.config['TOKENS'].split()
 
 
