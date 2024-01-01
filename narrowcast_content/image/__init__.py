@@ -7,6 +7,9 @@ image = Blueprint('image', __name__,
 
 @image.route('/')
 def show():
+    """
+    Render the url from the pquery parameters as an image.
+    """
     if 'url' not in request.args:
         abort(400, "Provide a url")
 
