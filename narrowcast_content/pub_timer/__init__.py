@@ -11,6 +11,10 @@ pub_timer = Blueprint('pub_timer', __name__,
 
 @pub_timer.route('/')
 def show():
+    """
+    Get the open pub evening of today, and render it on the page.
+    :return:
+    """
     now = datetime.now()
     start_of_yesterday = (now - timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
     end_of_tomorrow = (now + timedelta(days=20)).replace(hour=23, minute=59, second=59, microsecond=999999)

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var duration;
 
         if (now.isBefore(start)) {
-            // Countdown timer
+            //Countdown
             duration = moment.duration(start.diff(now));
             document.querySelector('.countdown').innerHTML = moment.utc(duration.asMilliseconds()).format("-HH:mm:ss");
             document.querySelector('.countdown').style.display = 'block';
@@ -14,11 +14,13 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('.closed').style.display = 'none';
             show_confetti = false
         } else if (now.isBetween(start, end)) {
+            // Opem
             document.querySelector('.countdown').style.display = 'none';
             document.querySelector('.open').style.display = 'block';
             document.querySelector('.closed').style.display = 'none';
             show_confetti = true
         } else {
+            // Closed
             document.querySelector('.countdown').style.display = 'none';
             document.querySelector('.open').style.display = 'none';
             document.querySelector('.closed').style.display = 'block';
