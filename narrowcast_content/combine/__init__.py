@@ -7,6 +7,9 @@ combine = Blueprint('combine', __name__,
 
 @combine.route('/')
 def show():
+    """
+    Parse the URLs and sizes that are in the query parameters, and render the urls with those sizes using iframes.
+    """
     url_sizes = []
     for i in range(100):
         url_key = 'url' + str(i)
