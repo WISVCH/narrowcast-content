@@ -33,6 +33,7 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: "${{ env.IMAGE_ID }}"
+          flavor: latest=true
           tags: type=sha, prefix={{date 'YYYYMMDD'}}-
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
