@@ -31,6 +31,14 @@ app.register_blueprint(pub_timer)
 # Parse the tokens
 tokens = app.config['TOKENS'].split()
 
+def exclude_from_token(func):
+    func._exclude_from_token = True
+    return func
+
+@app.route('/health')
+@exclude_from_token
+def health():
+    return "slay"
 
 @app.before_request
 def check_auth():
@@ -38,6 +46,13 @@ def check_auth():
     Checks if the client sends a token, and if the token is valid.
     Puts the token in the session so that it has to be provided only once.
     """
+
+    if request.endpoint in app.view_functions:
+        view_func = app.view_functions[request.endpoint]
+        check_token = not hasattr(view_func, '_exclude_from_token')
+        if not check_token:
+            return
+
     if 'token' not in request.args and 'token' not in session:
         abort(401, "Unauthorized")
 
