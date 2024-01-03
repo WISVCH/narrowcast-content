@@ -137,7 +137,7 @@ async function createChart() {
                         font: {
                             family: "'RTLGraphikTT-Semibold',Arial,Helvetica,sans-serif",
                             weight: "normal",
-                            size: 8,
+                            size: 12,
                         },
                         padding: 10,
                     }
@@ -158,6 +158,7 @@ async function createChart() {
                         font: {
                             family: "'RTLGraphikTT-Semibold',Arial,Helvetica,sans-serif",
                             weight: "bold",
+                            size: 16,
                         },
                         // autoSkip: true,
                         // maxTicksLimit: 10,
@@ -201,6 +202,7 @@ async function createChart() {
                                 font: {
                                     family: "'RTLGraphikTT-Semibold',Arial,Helvetica,sans-serif",
                                     weight: "bold",
+                                    size: 16
                                 },
                                 position: 'end',
                                 yAdjust: '',
@@ -222,6 +224,7 @@ async function createChart() {
                                 font: {
                                     family: "'RTLGraphikTT-Semibold',Arial,Helvetica,sans-serif",
                                     weight: "normal",
+                                    size: 16,
                                 },
                                 position: 'end',
                                 yAdjust: '',

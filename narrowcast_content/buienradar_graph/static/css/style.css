@@ -3,9 +3,25 @@ html {
 }
 
 body {
-    margin: 5px 50px 10px 20px;
-    padding: 60px;
     background-color: #ffffff;
+}
+
+.logo {
+    margin-bottom: -30px;
+    float: right;
+}
+
+.logo img {
+    width: 150px;
+}
+
+.container {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
 }
 
 .source {
