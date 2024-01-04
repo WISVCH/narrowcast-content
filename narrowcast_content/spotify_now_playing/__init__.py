@@ -1,8 +1,9 @@
 import time
-from datetime import datetime, timedelta
 
 import spotipy
 from flask import Blueprint, render_template, request, current_app, redirect, url_for
+
+from narrowcast_content import cache
 
 spotify_now_playing = Blueprint('spotify_now_playing', __name__,
                                 template_folder='templates', static_folder='static',
@@ -14,8 +15,6 @@ SCOPE = 'user-read-playback-state'
 SHOW_DIALOG = False
 
 token_info = {}
-prev_result = None
-prev_result_time = None
 
 
 @spotify_now_playing.route("/authorize")
@@ -41,15 +40,12 @@ def index():
 
 
 @spotify_now_playing.route("/currently_playing")
+@cache.cached(timeout=4)
 def currently_playing():
     """
     Get the song that is currently playing, if anything is playing.
     This is cached for 4 seconds.
     """
-    global prev_result, prev_result_time
-
-    if prev_result and prev_result_time and datetime.now() - prev_result_time < timedelta(seconds=4):
-        return prev_result
 
     local_token_info, authorized = get_token()
 
@@ -72,9 +68,6 @@ def currently_playing():
         result['artist'] = ', '.join([a['name'] for a in response['item']['artists']])
         result['title'] = response['item']['name']
         result['is_playing'] = response['is_playing']
-
-    prev_result = result
-    prev_result_time = datetime.now()
 
     return result
 
