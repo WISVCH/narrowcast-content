@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Upcoming Activities</title>
+    <link rel="stylesheet" href="{{ url_for('upcoming_activities.static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="top-bar">
+    <h1>Upcoming activities</h1>
+    <a href="https://wisv.ch/activities">wisv.ch/activities</a>
+    <img src="{{ url_for('upcoming_activities.static', filename='ch_logo.svg') }}">
+</div>
+<div class="schedule"></div>
+
+<script src="{{ url_for('upcoming_activities.static', filename='js/libs/moment.js') }}"></script>
+<script src="{{ url_for('upcoming_activities.static', filename='js/index.js') }}"></script>
+
+</body>
+</html>

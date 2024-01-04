@@ -1,0 +1,168 @@
+@font-face {
+    font-family: "Nimbus Sans L";
+    src: url("/upcoming_activities/static/fonts/nimbus-sans-l.regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Nimbus Sans L";
+    font-weight: bold;
+    src: url("/upcoming_activities/static/fonts/nimbus-sans-l.bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Nimbus Sans L";
+    font-style: italic;
+    src: url("/upcoming_activities/static/fonts/nimbus-sans-l.regular-italic.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Nimbus Sans L";
+    font-weight: bold;
+    font-style: italic;
+    src: url("/upcoming_activities/static/fonts/nimbus-sans-l.bold-italic.otf") format("opentype");
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Nimbus Sans L", sans-serif;
+    font-weight: bold;
+}
+
+body {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 170px auto;
+    height: 100vh;
+}
+
+.top-bar {
+    background-color: #1E274A;
+    color: white;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 60fr 40fr;
+    grid-row-gap: 18px;
+    padding: 0 20px 0 45px;
+    /*position: sticky;*/
+    /*top: 0;*/
+}
+
+.top-bar h1 {
+    margin: 0 0 -20px 0;
+    font-size: 63px;
+    justify-self: start;
+    align-self: end;
+    grid-row:1;
+    grid-column: 1;
+}
+
+.top-bar a{
+    color: white;
+    text-decoration: none;
+    font-size: 27px;
+    font-style: italic;
+    justify-self: start;
+    align-self: start;
+}
+
+.top-bar img {
+    height: 112px;
+    justify-self: end;
+    align-self: center;
+    grid-column: 2;
+    grid-row-start: 1;
+    grid-row-end: -1;
+}
+
+.schedule {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.schedule::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.schedule {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.day {
+    display: grid;
+    grid-template-columns: 270px auto;
+    border-bottom: 2px solid #d8d8d8;
+}
+
+.date {
+    grid-column: 1;
+    margin: 45px 0px 45px 45px;
+}
+
+.activities {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-rows: auto;
+    grid-row-gap: 25px;
+    margin: 25px 50px 25px 0;
+}
+
+.day-name {
+    font-size: 63px;
+    margin-bottom: -5px;
+    color: #1E274A;
+}
+
+.day-date {
+    font-size: 34px;
+    margin-bottom: -5px;
+    color: #9b9b9b;
+}
+
+.activity {
+    border-left: 10px solid #90B6CB;
+    padding: 5px 0 5px 20px;
+    block-size: fit-content;
+}
+
+.activity-name {
+    font-size: 45px;
+    color: #1E274A;
+}
+
+.activity-time {
+    font-size: 23px;
+    color: #9b9b9b;
+    margin-bottom: -10px;
+}
+
+.category-career {
+    border-left-color: #E8308A;
+}
+
+.category-social {
+    border-left-color: #EE7203;
+}
+
+.category-educational {
+    border-left-color: #2AA1A9;
+}
+
+.category-association {
+    border-left-color: #FBBB21;
+}
+
+.category-career.category-social,
+.category-career.category-educational,
+.category-career.category-association,
+.category-social.category-educational,
+.category-social.category-association,
+.category-educational.category-association {
+    border-left-color: #90B6CB;
+}
+
+

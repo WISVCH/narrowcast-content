@@ -9,6 +9,7 @@ from narrowcast_content.combine import combine
 from narrowcast_content.image import image
 from narrowcast_content.pub_timer import pub_timer
 from narrowcast_content.spotify_now_playing import spotify_now_playing
+from narrowcast_content.upcoming_activities import upcoming_activities
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -30,6 +31,7 @@ app.register_blueprint(spotify_now_playing)
 app.register_blueprint(combine)
 app.register_blueprint(image)
 app.register_blueprint(pub_timer)
+app.register_blueprint(upcoming_activities)
 
 # Parse the tokens
 tokens = app.config['TOKENS'].split()

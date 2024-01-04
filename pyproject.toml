@@ -6,6 +6,7 @@ dependencies = [
     "flask",
     "Flask-Caching",
     "spotipy",
+    "icalendar",
     "waitress",
 ]
 
