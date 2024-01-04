@@ -32,7 +32,7 @@ html, body {
 body {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 170px auto;
+    grid-template-rows: 190px auto;
     height: 100vh;
     background-color: white;
 }
@@ -68,7 +68,7 @@ body {
 }
 
 .top-bar img {
-    height: 112px;
+    height: 125px;
     justify-self: end;
     align-self: center;
     grid-column: 2;
@@ -100,7 +100,7 @@ body {
 
 .date {
     grid-column: 1;
-    margin: 45px 0px 45px 45px;
+    margin: 30px 0px 30px 45px;
 }
 
 .activities {
