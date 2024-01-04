@@ -87,7 +87,7 @@ def show():
     return render_template('upcoming_activities/index.jinja2')
 
 
-@upcoming_activities.route('/events/')
+@upcoming_activities.route('/events')
 @cache.cached(timeout=4 * 60)
 def events():
     # Fetch and parse ICS data, then organize events

@@ -25,7 +25,7 @@ function autoScroll() {
 async function fetchAndParseEventData() {
     try {
         // Fetch data from the API
-        const response = await fetch('events');
+        const response = await fetch('events',);
 
         if (!response.ok) {
             throw new Error(`Error fetching data: ${response.status} ${response.statusText}`);
