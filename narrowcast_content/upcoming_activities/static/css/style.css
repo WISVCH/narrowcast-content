@@ -25,7 +25,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: "Nimbus Sans L", sans-serif;
+    font-family: "nimbus-sans", "Nimbus Sans L", Helvetica, sans-serif;
     font-weight: bold;
 }
 
@@ -42,7 +42,7 @@ body {
     color: white;
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: 60fr 40fr;
+    grid-template-rows: 55fr 45fr;
     grid-row-gap: 18px;
     padding: 0 20px 0 45px;
     /*position: sticky;*/
@@ -61,7 +61,8 @@ body {
 .top-bar a {
     color: white;
     text-decoration: none;
-    font-size: 27px;
+    font-size: 30px;
+    font-weight: bold;
     font-style: italic;
     justify-self: start;
     align-self: start;
@@ -100,7 +101,7 @@ body {
 
 .date {
     grid-column: 1;
-    margin: 30px 0px 30px 45px;
+    margin: 35px 0 35px 45px;
 }
 
 .activities {
@@ -114,6 +115,7 @@ body {
 
 .day-name {
     font-size: 63px;
+    margin-top: -6px;
     margin-bottom: -5px;
     color: #1E274A;
 }
@@ -126,7 +128,7 @@ body {
 
 .activity {
     border-left: 10px solid #90B6CB;
-    padding: 5px 0 5px 20px;
+    padding: 2px 0 15px 20px;
     block-size: fit-content;
 }
 
