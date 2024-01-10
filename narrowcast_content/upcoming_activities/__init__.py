@@ -45,12 +45,13 @@ def fetch_and_parse_ics(url):
 # Function to filter events for the next 7 days
 def filter_events_for_next_n_days(events, n):
     now = datetime.now(timezone.utc)
-    end_of_week = now + timedelta(days=n)
+    start_of_today = now.replace(hour=0, minute=0)
+    end_of_week = (now + timedelta(days=n)).replace(hour=23, minute=0)
 
     return [
         event
         for event in events
-        if now <= event['start'] < end_of_week
+        if start_of_today <= event['start'] < end_of_week
     ]
 
 
