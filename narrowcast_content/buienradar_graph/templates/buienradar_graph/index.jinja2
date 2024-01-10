@@ -9,10 +9,12 @@
 </head>
 <body>
 <div class="container">
-    <div class="logo">
-        <img src="{{ url_for('buienradar_graph.static', filename='buienradar_logo.svg') }}">
+    <div class="top_bar">
+        <span class="temp"></span>
+        <img class="weather_icon">
     </div>
     <canvas id="rainfallChart"></canvas>
+    <img class="logo" src="{{ url_for('buienradar_graph.static', filename='buienradar_logo.svg') }}">
 {#    <div class="source">Source: Buienradar<sup>®</sup></div>#}
 </div>
 

@@ -6,13 +6,28 @@ body {
     background-color: #ffffff;
 }
 
-.logo {
-    margin-bottom: -30px;
-    float: right;
+.top_bar {
+    text-align: right;
+    margin-bottom: -35px;
 }
 
-.logo img {
+.logo {
     width: 150px;
+    float: right;
+    margin-top: 25px;
+}
+
+.temp {
+    font-weight: bold;
+    color: #152B82;
+    font-size: 1.7em;
+    margin-left: 20px;
+}
+
+.weather_icon {
+    width: 30px;
+    margin-bottom: -5px;
+    margin-left: 10px;
 }
 
 .container {

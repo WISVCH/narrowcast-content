@@ -1,9 +1,22 @@
 /**
  * Call the buienradar API to get the rain data
  */
-async function fetchData() {
+async function fetchGraphData() {
     try {
         const response = await fetch('https://graphdata.buienradar.nl/2.0/forecast/geo/RainHistoryForecast?lat=' + lat.toString() + '&lon=' + lon.toString());
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+/**
+ * Call the buienradar API to get the other data
+ */
+async function fetchWeatherData() {
+    try {
+        const response = await fetch('https://data.buienradar.nl/2.0/feed/json');
         const data = await response.json();
         return data;
     } catch (error) {
@@ -38,11 +51,46 @@ function findClosestMoment(momentList) {
     return closestMoment;
 }
 
+//source: https://www.movable-type.co.uk/scripts/latlong.html
+function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371e3; // metres
+    const φ1 = lat1 * Math.PI / 180; // φ, λ in radians
+    const φ2 = lat2 * Math.PI / 180;
+    const Δφ = (lat2 - lat1) * Math.PI / 180;
+    const Δλ = (lon2 - lon1) * Math.PI / 180;
+
+    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+        Math.cos(φ1) * Math.cos(φ2) *
+        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const d = R * c; // in metres
+
+    return d;
+}
+
+function findClosestStation(data, targetLat, targetLon) {
+    let closestStation = null;
+    let minDistance = Infinity;
+
+    for (const station of data.actual.stationmeasurements) {
+        const stationLat = station.lat;
+        const stationLon = station.lon;
+        const distance = calculateDistance(targetLat, targetLon, stationLat, stationLon);
+        if (distance < minDistance) {
+            minDistance = distance;
+            closestStation = station;
+        }
+    }
+
+    return closestStation;
+}
+
 /**
  * Get and parse the data from buienradar
  */
-async function get_data() {
-    const data = await fetchData();
+async function getGraphData() {
+    const data = await fetchGraphData();
 
     const graph_data = [];
 
@@ -55,13 +103,20 @@ async function get_data() {
     return graph_data;
 }
 
+async function updateTemp() {
+    const weather_data = await fetchWeatherData()
+    const station_measurements = findClosestStation(weather_data, lat, lon)
+    document.querySelector(".temp").innerHTML = station_measurements.temperature + "°C"
+    document.querySelector(".weather_icon").src = station_measurements.iconurl
+}
+
 let myChart;
 
 /**
  * Update the chart with new data from buienradar, and the new time
  */
 async function updateChart() {
-    const graph_data = await get_data();
+    const graph_data = await getGraphData();
 
     myChart.data.datasets[0].data = graph_data
     myChart.options.scales.x.min = graph_data[0]['x'];
@@ -91,7 +146,7 @@ async function updateChart() {
  * Parse the data and create the chart
  */
 async function createChart() {
-    const graph_data = await get_data();
+    const graph_data = await getGraphData();
 
     const now = moment()
 
@@ -239,6 +294,9 @@ async function createChart() {
 
 // Call the function to create the chart
 createChart();
+updateTemp();
+
+setInterval(updateTemp, 60000*5); // Repeat every 5 minutes
 
 // Function to calculate time remaining until the next whole minute
 function calculateTimeRemaining() {
