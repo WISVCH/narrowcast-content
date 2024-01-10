@@ -168,25 +168,38 @@ body {
     border-left-color: #90B6CB;
 }
 
+.beeldmerk {
+    display: none;
+}
+
 @media only screen and (max-width: 1300px) {
     body {
-        grid-template-rows: 120px auto;
+        grid-template-rows: 200px auto;
     }
 
     .top-bar {
-        grid-template-rows: 55fr 45fr;
+        grid-template-rows: 56fr 44fr;
     }
 
     .top-bar h1 {
-        font-size: 40px;
+        font-size: 70px;
     }
 
     .top-bar a {
-        font-size: 20px;
+        font-size: 30px;
     }
 
     .top-bar img {
         height: 75px;
+    }
+
+    .beeldmerk {
+        display: block;
+        height: 130px !important;
+    }
+
+    .logo {
+        display: none;
     }
 
 }
