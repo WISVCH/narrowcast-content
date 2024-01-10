@@ -39,7 +39,7 @@ def show():
     pub_evening_times = [
         {"start": item["start"]["dateTime"], "end": item["end"]["dateTime"]}
         for item in json_data["items"]
-        if item.get("summary", "").lower() == "/pub evening"
+        if "/pub" in item.get("summary", "").lower()
     ]
 
     pub_evening_times = [
