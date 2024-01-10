@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (now.isBefore(start)) {
             //Countdown
             duration = moment.duration(start.diff(now));
-            document.querySelector('.countdown').innerHTML = moment.utc(duration.asMilliseconds()).format("-HH:mm:ss");
+            document.querySelector('.countdown').innerHTML = moment.utc(duration.asMilliseconds()).format("HH:mm:ss");
             document.querySelector('.countdown').style.display = 'block';
             document.querySelector('.open').style.display = 'none';
             document.querySelector('.closed').style.display = 'none';
