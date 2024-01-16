@@ -69,7 +69,7 @@ async function makeSchedule() {
         // Iterate through each day in the schedule
         for (var day in schedule) {
             if (schedule.hasOwnProperty(day)) {
-                let date = moment(day)
+                let date = moment.utc(day)
                 // Create a div for the day
                 var dayDiv = document.createElement('div');
                 dayDiv.className = 'day';
@@ -121,10 +121,12 @@ async function makeSchedule() {
                     var timeDiv = document.createElement('div');
                     timeDiv.className = 'activity-time';
 
-                    timeDiv.textContent = activity.start.format("HH:mm");
-
-                    if (activity.start.isSame(activity.end, "day")) {
-                        timeDiv.textContent += ' - ' + activity.end.format("HH:mm");
+                    if(activity.start.isSame(date, "day")) {
+                        timeDiv.textContent = activity.start.format("HH:mm");
+    
+                        if (activity.start.isSame(activity.end, "day")) {
+                            timeDiv.textContent += ' - ' + activity.end.format("HH:mm");
+                        }
                     }
 
                     // Append activity name and time to the activity div
