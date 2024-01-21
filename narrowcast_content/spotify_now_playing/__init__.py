@@ -36,7 +36,7 @@ def index():
     """
     Render the player page.
     """
-    return render_template("spotify_now_playing/index.jinja2")
+    return render_template("spotify_now_playing/index.jinja2", initial_data=currently_playing())
 
 
 @spotify_now_playing.route("/currently_playing")
