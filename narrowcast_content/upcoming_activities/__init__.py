@@ -59,6 +59,8 @@ def filter_events_for_next_n_days(events, n):
 def organize_events_by_day(events, n):
     organized_events = {}
 
+    today = datetime.now()
+
     for event in events:
         event_date = event['start'].strftime('%Y-%m-%d')
 
@@ -67,9 +69,9 @@ def organize_events_by_day(events, n):
 
         # Check if it is a multiple day event
         if event['end'].date() > event['start'].date() and event['end'].hour >= 6:
-            # Add event for each day until the end date (excluding events ending before 9:00AM the next day)
+            # Add event for each day until the end date, or n days (excluding events ending before 9:00AM the next day)
             current_date = event['start'].date()
-            while current_date <= event['end'].date():
+            while current_date <= event['end'].date() and current_date < (today + timedelta(days=n)).date():
                 if current_date.strftime('%Y-%m-%d') not in organized_events:
                     organized_events[current_date.strftime('%Y-%m-%d')] = []
                 current_date_str = current_date.strftime('%Y-%m-%d')
@@ -87,8 +89,6 @@ def organize_events_by_day(events, n):
                 'end': (event['end'].replace(tzinfo=pytz.utc) + event['end'].utcoffset()).isoformat(),
                 'categories': event['categories'],
             })
-
-    today = datetime.now()
 
     for i in range(n):
         current_date = today + timedelta(days=i)
