@@ -110,7 +110,7 @@ body {
     grid-template-columns: auto;
     grid-auto-rows: auto;
     grid-row-gap: 25px;
-    margin: 25px 50px 25px 0;
+    margin: 25px 60px 25px 0;
 }
 
 .day-name {
