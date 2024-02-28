@@ -1,3 +1,9 @@
+// Get the current URL
+const currentUrl = window.location.href;
+
+// Use URLSearchParams to parse the query parameters
+const urlParams = new URLSearchParams(currentUrl);
+
 function autoScroll() {
     var currentIndex = 0;
 
@@ -25,7 +31,14 @@ function autoScroll() {
 async function fetchAndParseEventData() {
     try {
         // Fetch data from the API
-        const response = await fetch('events',);
+        let fetchUrl = `events`;
+
+        if (urlParams.has('days')) {
+            const daysValue = urlParams.get('days');
+            fetchUrl += `?days=${daysValue}`;
+        }
+
+        const response = await fetch(fetchUrl);
 
         if (!response.ok) {
             throw new Error(`Error fetching data: ${response.status} ${response.statusText}`);
@@ -121,9 +134,9 @@ async function makeSchedule() {
                     var timeDiv = document.createElement('div');
                     timeDiv.className = 'activity-time';
 
-                    if(activity.start.isSame(date, "day")) {
+                    if (activity.start.isSame(date, "day")) {
                         timeDiv.textContent = activity.start.format("HH:mm");
-    
+
                         if (activity.start.isSame(activity.end, "day")) {
                             timeDiv.textContent += ' - ' + activity.end.format("HH:mm");
                         }
@@ -160,7 +173,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     setTimeout(autoScroll, 0);
 });
 
-var setFonts = function() {
+var setFonts = function () {
     var size = {
         height: window.innerHeight,
         width: window.innerWidth
