@@ -1,8 +1,8 @@
 // Get the current URL
-const currentUrl = window.location.href;
+const currentUrl = new URL(window.location.href);
 
 // Use URLSearchParams to parse the query parameters
-const urlParams = new URLSearchParams(currentUrl);
+const urlParams = new URLSearchParams(currentUrl.search);
 
 function autoScroll() {
     var currentIndex = 0;
