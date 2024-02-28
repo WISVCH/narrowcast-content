@@ -32,7 +32,7 @@ html, body {
 body {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 190px auto;
+    grid-template-rows: 2.57em auto;
     height: 100vh;
     background-color: white;
 }
@@ -43,15 +43,13 @@ body {
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: 55fr 45fr;
-    grid-row-gap: 18px;
-    padding: 0 20px 0 45px;
-    /*position: sticky;*/
-    /*top: 0;*/
+    grid-row-gap: 0.24em;
+    padding: 0 0.27em 0 0.61em;
 }
 
 .top-bar h1 {
-    margin: 0 0 -20px 0;
-    font-size: 63px;
+    margin: 0 0 -0.27em 0;
+    font-size: 0.85em;
     justify-self: start;
     align-self: end;
     grid-row: 1;
@@ -61,7 +59,7 @@ body {
 .top-bar a {
     color: white;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 0.40em;
     font-weight: bold;
     font-style: italic;
     justify-self: start;
@@ -69,7 +67,7 @@ body {
 }
 
 .top-bar img {
-    height: 125px;
+    height: 1.69em;
     justify-self: end;
     align-self: center;
     grid-column: 2;
@@ -95,13 +93,13 @@ body {
 
 .day {
     display: grid;
-    grid-template-columns: 270px auto;
-    border-bottom: 2px solid #d8d8d8;
+    grid-template-columns: 3.66em auto;
+    border-bottom: 0.03em solid #d8d8d8;
 }
 
 .date {
     grid-column: 1;
-    margin: 35px 0 35px 45px;
+    margin: 0.47em 0 0.47em 0.61em;
 }
 
 .activities {
@@ -109,38 +107,38 @@ body {
     display: grid;
     grid-template-columns: auto;
     grid-auto-rows: auto;
-    grid-row-gap: 25px;
-    margin: 25px 50px 25px 0;
+    grid-row-gap: 0.34em;
+    margin: 0.34em 0.68em 0.34em 0;
 }
 
 .day-name {
-    font-size: 63px;
-    margin-top: -6px;
-    margin-bottom: -5px;
+    font-size: 0.85em;
+    margin-top: -0.08em;
+    margin-bottom: -0.07em;
     color: #1E274A;
 }
 
 .day-date {
-    font-size: 34px;
-    margin-bottom: -5px;
+    font-size: 0.46em;
+    margin-bottom: -0.07em;
     color: #9b9b9b;
 }
 
 .activity {
-    border-left: 10px solid #90B6CB;
-    padding: 2px 0 15px 20px;
+    border-left: 0.14em solid #90B6CB;
+    padding: 0.03em 0 0.20em 0.27em;
     block-size: fit-content;
 }
 
 .activity-name {
-    font-size: 45px;
+    font-size: 0.61em;
     color: #1E274A;
 }
 
 .activity-time {
-    font-size: 23px;
+    font-size: 0.31em;
     color: #9b9b9b;
-    margin-bottom: -10px;
+    margin-bottom: -0.14em;
 }
 
 .category-career {
@@ -172,34 +170,76 @@ body {
     display: none;
 }
 
-@media only screen and (max-width: 1300px) {
+@media only screen and (max-aspect-ratio: 1/1) {
     body {
-        grid-template-rows: 200px auto;
+        grid-template-rows: 4.81em auto;
     }
 
     .top-bar {
         grid-template-rows: 56fr 44fr;
+        grid-row-gap: 0.43em;
+        padding: 0 0.48em 0 1.08em;
     }
 
     .top-bar h1 {
-        font-size: 70px;
+        margin: 0 0 -0.30em 0;
+        font-size: 1.69em;
     }
 
     .top-bar a {
-        font-size: 30px;
+        font-size: 0.72em;
     }
 
     .top-bar img {
-        height: 75px;
+        height: 1.81em;
     }
 
     .beeldmerk {
         display: block;
-        height: 130px !important;
+        height: 3.13em !important;
     }
 
     .logo {
         display: none;
+    }
+
+    .day {
+        grid-template-columns: 6.50em auto;
+        border-bottom: 0.05em solid #d8d8d8;
+    }
+
+    .date {
+        margin: 0.84em 0 0.84em 1.08em;
+    }
+
+    .activities {
+        grid-row-gap: 0.60em;
+        margin: 0.60em 1.20em 0.60em 0;
+    }
+
+    .day-name {
+        font-size: 1.52em;
+        margin-top: -0.14em;
+        margin-bottom: -0.12em;
+    }
+
+    .day-date {
+        font-size: 0.82em;
+        margin-bottom: -0.12em;
+    }
+
+    .activity {
+        border-left-width: 0.24em;
+        padding: 0.05em 0 0.36em 0.48em;
+    }
+
+    .activity-name {
+        font-size: 1.08em;
+    }
+
+    .activity-time {
+        font-size: 0.55em;
+        margin-bottom: -0.24em;
     }
 
 }

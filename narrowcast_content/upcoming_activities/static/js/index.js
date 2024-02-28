@@ -159,3 +159,23 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     setInterval(makeSchedule, 1000 * 60 * 5);
     setTimeout(autoScroll, 0);
 });
+
+var setFonts = function() {
+    var size = {
+        height: window.innerHeight,
+        width: window.innerWidth
+    };
+    var ratio = size.width / size.height;
+    var max = 2;
+    var factor = 1.98;
+    if (ratio > max) {
+        size.width = size.height * factor;
+    }
+    size.width = parseInt(size.width);
+    document.body.setAttribute('style', 'font-size:' + size.width / 26 + 'px');
+    window.fontSize = size.width / 26;
+};
+
+window.onresize = setFonts;
+
+setFonts()
