@@ -108,7 +108,7 @@ body {
     grid-template-columns: auto;
     grid-auto-rows: auto;
     grid-row-gap: 0.34em;
-    margin: 0.34em 0.68em 0.34em 0;
+    margin: 0.34em 0.82em 0.34em 0;
 }
 
 .day-name {
