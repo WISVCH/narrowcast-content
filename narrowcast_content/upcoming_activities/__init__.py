@@ -2,7 +2,7 @@ import re
 from datetime import timezone
 
 import pytz
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 
 upcoming_activities = Blueprint('upcoming_activities', __name__,
                                 template_folder='templates', static_folder='static',
@@ -105,11 +105,17 @@ def show():
 
 
 @upcoming_activities.route('/events')
-@cache.cached(timeout=4 * 60)
+@cache.cached(timeout=4 * 60, query_string=True)
 def events():
+    days = request.args.get('days')
+    if not days:
+        days = 14
+    else:
+        days = int(days)
+
     # Fetch and parse ICS data, then organize events
     ics_events = fetch_and_parse_ics(ics_url)
-    filtered_events = filter_events_for_next_n_days(ics_events, 14)
-    organized_events = organize_events_by_day(filtered_events, 14)
+    filtered_events = filter_events_for_next_n_days(ics_events, days)
+    organized_events = organize_events_by_day(filtered_events, days)
     # Print the result
     return organized_events
