@@ -1,5 +1,6 @@
 import logging
 from logging import Formatter, FileHandler
+from datetime import datetime
 
 from flask import Flask, request, abort, session
 
@@ -72,6 +73,6 @@ def check_auth():
 
 @app.after_request
 def after_request(response):
-     timestamp = strftime('[%Y-%b-%d %H:%M]')
+     timestamp = datetime.now().strftime('[%Y-%b-%d %H:%M]')
      logger.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
      return response
