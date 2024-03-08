@@ -1,5 +1,6 @@
 import logging
 from logging import Formatter, FileHandler
+from datetime import datetime
 
 from flask import Flask, request, abort, session
 
@@ -69,3 +70,9 @@ def check_auth():
 
     if session['token'] not in tokens:
         abort(401, "Unauthorized")
+
+@app.after_request
+def after_request(response):
+     timestamp = datetime.now().strftime('[%Y-%b-%d %H:%M]')
+     logger.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
+     return response
