@@ -1,3 +1,4 @@
+import pickle
 import time
 
 import spotipy
@@ -13,6 +14,8 @@ API_BASE = 'https://accounts.spotify.com'
 SCOPE = 'user-read-playback-state'
 
 SHOW_DIALOG = False
+
+token_file = 'spotify_token.pickle'
 
 token_info = {}
 
@@ -87,6 +90,10 @@ def api_callback():
     global token_info
     token_info = sp_oauth.get_access_token(code)
 
+    # Store token in file
+    with current_app.config['DATA_DIR'].joinpath(token_file).open('wb') as f:
+        pickle.dump(token_info, f)
+
     return redirect(url_for('spotify_now_playing.index'))
 
 
@@ -96,6 +103,14 @@ def get_token():
     """
     token_valid = False
     global token_info
+
+    # Checking if there is a token stored in a file
+    if token_info == {} and current_app.config['DATA_DIR'].joinpath(token_file).is_file():
+        try:
+            with current_app.config['DATA_DIR'].joinpath(token_file).open('rb') as f:
+                token_info = pickle.load(f)
+        except:
+            token_info = {}
 
     # Checking if there is a token stored
     if token_info == {}:
@@ -114,6 +129,10 @@ def get_token():
                                                client_secret=current_app.config['SPOTIPY_CLIENT_SECRET'],
                                                redirect_uri=current_app.config['SPOTIPY_REDIRECT_URI'], scope=SCOPE)
         token_info = sp_oauth.refresh_access_token(token_info.get('refresh_token'))
+
+        # Store toke in file
+        with current_app.config['DATA_DIR'].joinpath(token_file).open('wb') as f:
+            pickle.dump(token_info, f)
 
     token_valid = True
     return token_info, token_valid

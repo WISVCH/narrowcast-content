@@ -1,5 +1,6 @@
 import logging
 from logging import Formatter, FileHandler
+from pathlib import Path
 
 from flask import Flask, request, abort, session
 
@@ -36,6 +37,8 @@ app.register_blueprint(upcoming_activities)
 # Parse the tokens
 tokens = app.config['TOKENS'].split()
 
+app.config['DATA_DIR'] = Path(app.config['DATA_PATH'])
+app.config['DATA_DIR'].mkdir(parents=True, exist_ok=True)
 
 def exclude_from_token(func):
     func._exclude_from_token = True

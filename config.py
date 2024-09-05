@@ -20,3 +20,5 @@ PUB_GOOGLE_CALENDAR_API_KEY = 'CHANGE_ME'
 
 # Tokens that can be used to access everything.
 TOKENS = 'CHANGE_ME CHANGE_ME_TOO'
+
+DATA_PATH='data'
