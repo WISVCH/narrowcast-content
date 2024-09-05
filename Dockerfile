@@ -12,4 +12,4 @@ RUN pip install .
 
 EXPOSE 8080
 
-CMD [ "waitress-serve", "narrowcast_content:app"]
+CMD [ "python", "-m", "narrowcast_content.waitress_server"]

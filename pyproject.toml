@@ -8,6 +8,8 @@ dependencies = [
     "spotipy",
     "icalendar",
     "waitress",
+    "PasteDeploy",
+    "paste",
 ]
 
 [build-system]
