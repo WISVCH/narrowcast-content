@@ -1,5 +1,4 @@
-import logging
-from logging import Formatter, FileHandler
+from logging.config import dictConfig
 from pathlib import Path
 
 from flask import Flask, request, abort, session
@@ -18,13 +17,24 @@ app.config.from_prefixed_env()
 
 cache.init_app(app)
 
-if not app.debug:
-    file_handler = FileHandler('error.log')
-    file_handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
-    app.logger.setLevel(logging.INFO)
-    file_handler.setLevel(logging.INFO)
-    app.logger.addHandler(file_handler)
-    app.logger.info('errors')
+dictConfig(
+    {
+        "version": 1,
+        "formatters": {
+            "default": {
+                "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
+            }
+        },
+        "handlers": {
+            "console": {
+                "class": "logging.StreamHandler",
+                "stream": "ext://sys.stdout",
+                "formatter": "default",
+            }
+        },
+        "root": {"level": "WARN", "handlers": ["console"]},
+    }
+)
 
 # Add all the blueprints
 app.register_blueprint(buienradar_graph)
