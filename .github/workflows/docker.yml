@@ -1,8 +1,6 @@
 name: Docker
 on:
   push:
-  schedule:
-    - cron: "42 2 2 * *"
   workflow_dispatch:
 
 env:
