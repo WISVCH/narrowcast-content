@@ -1,3 +1,4 @@
+import logging
 import pickle
 import time
 
@@ -19,6 +20,7 @@ token_file = 'spotify_token.pickle'
 
 token_info = {}
 
+_LOGGER = logging.getLogger(__name__)
 
 @spotify_now_playing.route("/authorize")
 def authorize():
@@ -122,17 +124,22 @@ def get_token():
 
     is_token_expired = token_info.get('expires_at') - now < 60
 
-    # Refreshing token if it has expired
-    if is_token_expired:
-        # Don't reuse a SpotifyOAuth object because they store token info and you could leak user tokens if you reuse a SpotifyOAuth object
-        sp_oauth = spotipy.oauth2.SpotifyOAuth(client_id=current_app.config['SPOTIPY_CLIENT_ID'],
-                                               client_secret=current_app.config['SPOTIPY_CLIENT_SECRET'],
-                                               redirect_uri=current_app.config['SPOTIPY_REDIRECT_URI'], scope=SCOPE)
-        token_info = sp_oauth.refresh_access_token(token_info.get('refresh_token'))
+    try:
+        # Refreshing token if it has expired
+        if is_token_expired:
+            # Don't reuse a SpotifyOAuth object because they store token info and you could leak user tokens if you reuse a SpotifyOAuth object
+            sp_oauth = spotipy.oauth2.SpotifyOAuth(client_id=current_app.config['SPOTIPY_CLIENT_ID'],
+                                                   client_secret=current_app.config['SPOTIPY_CLIENT_SECRET'],
+                                                   redirect_uri=current_app.config['SPOTIPY_REDIRECT_URI'], scope=SCOPE)
+            token_info = sp_oauth.refresh_access_token(token_info.get('refresh_token'))
 
-        # Store toke in file
-        with current_app.config['DATA_DIR'].joinpath(token_file).open('wb') as f:
-            pickle.dump(token_info, f)
+            # Store toke in file
+            with current_app.config['DATA_DIR'].joinpath(token_file).open('wb') as f:
+                pickle.dump(token_info, f)
 
-    token_valid = True
+        token_valid = True
+    except spotipy.oauth2.SpotifyOauthError:
+        _LOGGER.exception('')
+        token_valid = False
+
     return token_info, token_valid
