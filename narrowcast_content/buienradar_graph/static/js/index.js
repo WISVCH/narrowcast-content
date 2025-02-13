@@ -107,7 +107,16 @@ async function updateTemp() {
     const weather_data = await fetchWeatherData()
     const station_measurements = findClosestStation(weather_data, lat, lon)
     document.querySelector(".temp").innerHTML = station_measurements.temperature + "°C"
-    document.querySelector(".weather_icon").src = station_measurements.iconurl
+
+    const weatherIcon = document.querySelector(".weather_icon");
+    weatherIcon.src = station_measurements.iconurl;
+
+    // Fix for mistake in url of icon in buienradar api
+    weatherIcon.onerror = function () {
+        // Extract filename and convert to uppercase
+        weatherIcon.onerror = null; // Prevent infinite loop if the fallback also fails
+        weatherIcon.src = station_measurements.iconurl.replace(/\/([a-z])\.png$/, (_, letter) => `/${letter.toUpperCase()}.png`);
+    };
 }
 
 let myChart;
