@@ -13,6 +13,14 @@ These are the pages that are currently here:
 This page shows a rain graph of the location given by `LATITUDE` and `LONGITUDE`.
 The data is sourced from [Buienradar](https://www.buienradar.nl/).
 
+### Upcoming Activities
+
+`/upcoming_activities`
+
+This page displays a schedule of upcoming activities, grouped by day. Activities are fetched from a configured source and shown with their start and end times, as well as categories if available.
+
+The schedule is automatically refreshed every 5 minutes.
+
 ### /Pub Timer
 
 `/pub_timer`
