@@ -54,6 +54,12 @@ This page displays the images provided full screen.
 This page can be used to stack multiple pages vertically. This is done by providing multiple URLs, and for every URL a size.
 The size is a personage of the full screen height.
 
+## Shuttr
+
+`/shuttr`
+
+Shows a random gallery from Shuttr.
+
 ## Tokens
 
 To make sure not everyone can access the application, you need to provide a token when doing your request.
