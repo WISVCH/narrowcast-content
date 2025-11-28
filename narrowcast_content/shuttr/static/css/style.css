@@ -11,8 +11,8 @@ body {
   margin: 0;
   flex-direction: column;
   font-family: Open Sans, Arial;
-  color: #fff;
-  background-color: #1e274a;
+  color: #1e274a;
+  background-color: #fff;
   font-size: 24px;
   top: 5rem;
   bottom: 5rem;
@@ -36,7 +36,7 @@ h3 {
 
 #dates {
   font-size: 1.5rem;
-  color: #fafafa;
+  color: #1e274a;
   font-weight: lighter;
 }
 
