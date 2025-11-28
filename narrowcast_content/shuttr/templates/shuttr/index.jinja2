@@ -105,11 +105,10 @@
       const grid = document.getElementById("grid");
       const photos = album.photos;
       shuffle(photos);
-      while (true) {
-        if(currentPhoto >= layout.length) break;
 
+      for (let i = 0; i < layout.length; i++) {
         const photo = photos[currentPhoto];
-        const [height, width] = layout[currentPhoto];
+        const [height, width] = layout[i];
         dataUrl = thumbHashToDataURL(Uint8Array.from(atob(photo['thumbHash']), c => c.charCodeAt(0)));
 
         const img = document.createElement("img");
@@ -118,9 +117,7 @@
         grid.appendChild(img);
 
         currentPhoto++;
-        const shouldBreak = currentPhoto === photos.length;
         currentPhoto %= photos.length;
-        if(shouldBreak) break;
       }
 
       const swapImage = () => {
