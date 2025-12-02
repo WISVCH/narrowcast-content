@@ -113,7 +113,7 @@
 
         const img = document.createElement("img");
         img.setAttribute("src", `${baseDomain}/photo/${photo.album}/${photo.id}/large`);
-        img.setAttribute("style", `aspect-ratio: ${width}/${height}; grid-row: span ${height};grid-column: span ${width};background-image: url(${dataUrl})`);
+        img.setAttribute("style", `grid-row: span ${height};grid-column: span ${width};background-image: url(${dataUrl})`);
         grid.appendChild(img);
 
         currentPhoto++;
