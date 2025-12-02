@@ -11,6 +11,12 @@
     />
     <script src="{{ url_for('shuttr.static', filename='js/thumbhash.js') }}"></script>
     <script>
+      let seed = {{ seed|tojson|safe }};
+      const random = () => {
+        let x = Math.sin(seed++) * 10000;
+        return x - Math.floor(x);
+      }
+
       // prettier-ignore
       const layouts = [
         // [
@@ -43,7 +49,7 @@
         ],
         [
           [2,3]            ,
-                           
+
           [1,1],[1,1],[1,1],
           [1,1],      [2,2],
           [1,1]            ,
@@ -61,13 +67,13 @@
       const layout =
         forcedLayout !== undefined
           ? layouts[forcedLayout]
-          : layouts[Math.floor(Math.random() * layouts.length)];
+          : layouts[Math.floor(random() * layouts.length)];
 
       const shuffle = (array) => {
         let currentIndex = array.length;
 
         while (currentIndex != 0) {
-          let randomIndex = Math.floor(Math.random() * currentIndex);
+          let randomIndex = Math.floor(random() * currentIndex);
           currentIndex--;
 
           [array[currentIndex], array[randomIndex]] = [
@@ -122,7 +128,7 @@
 
       const swapImage = () => {
         const photo = photos[currentPhoto];
-        const img = grid.children[Math.floor(Math.random() * grid.children.length)];
+        const img = grid.children[Math.floor(random() * grid.children.length)];
         img.setAttribute("src", `${baseDomain}/photo/${photo.album}/${photo.id}/large`);
         currentPhoto++;
         currentPhoto %= photos.length;
