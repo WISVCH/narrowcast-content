@@ -1,14 +1,19 @@
-# start by pulling the python image
+# Use uv only while building; the application image stays on the existing Python base.
 FROM python:3.12-alpine
 
-# copy every content from the local file to the image
-COPY . /app
+# Copy a specific uv release so the lockfile is installed consistently.
+COPY --from=ghcr.io/astral-sh/uv:0.12.7 /uv /uvx /bin/
 
-# switch working directory
 WORKDIR /app
 
-# install the dependencies and packages
-RUN pip install .
+# Keep dependencies in a cached layer and reject an absent or stale lockfile.
+COPY pyproject.toml uv.lock ./
+RUN uv sync --locked --no-install-project
+
+COPY . .
+RUN uv sync --locked
+
+ENV PATH="/app/.venv/bin:$PATH"
 
 EXPOSE 8080
 
