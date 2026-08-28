@@ -1,0 +1,41 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["github>WISVCH/renovate-config"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/^\\.github/workflows/python\\.yml$/"
+      ],
+      "matchStrings": [
+        "python-version: \\\"(?<currentValue>\\d+\\.\\d+)\\\""
+      ],
+      "depNameTemplate": "python",
+      "datasourceTemplate": "python-version",
+      "versioningTemplate": "python"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Update the CI Python minor version with the Python runtime group.",
+      "matchManagers": ["custom.regex"],
+      "matchPackageNames": ["python"],
+      "groupName": "Python runtime",
+      "automerge": false
+    },
+    {
+      "description": "Update the deployed Python image with the Python runtime group.",
+      "matchManagers": ["dockerfile"],
+      "matchPackageNames": ["python"],
+      "groupName": "Python runtime",
+      "automerge": false
+    },
+    {
+      "description": "Update the declared Python requirement and its uv lockfile with the Python runtime group.",
+      "matchManagers": ["pep621"],
+      "matchDepTypes": ["requires-python"],
+      "groupName": "Python runtime",
+      "automerge": false
+    }
+  ]
+}
