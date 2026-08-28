@@ -1,5 +1,5 @@
 # Use uv only while building; the application image stays on the existing Python base.
-FROM python:3.12-alpine
+FROM python:3.14-alpine
 
 # Copy a specific uv release so the lockfile is installed consistently.
 COPY --from=ghcr.io/astral-sh/uv:0.12.7 /uv /uvx /bin/
