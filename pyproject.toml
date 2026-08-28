@@ -2,7 +2,7 @@
 name = "narrowcast_content"
 version = "1.0.0"
 description = "Various screens to show on a narrowcast presenter."
-requires-python = ">=3.12,<3.13"
+requires-python = "==3.12.*"
 dependencies = [
     "flask",
     "Flask-Caching",
