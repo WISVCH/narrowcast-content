@@ -31,7 +31,7 @@ jobs:
         run: echo "IMAGE_ID=$(echo ${{ env.REGISTRY }}/${{ env.REPO_NAME }} | tr '[A-Z]' '[a-z]')" >> $GITHUB_ENV
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v6
         with:
           images: "${{ env.IMAGE_ID }}"
           flavor: latest=true
