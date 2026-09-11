@@ -36,6 +36,16 @@
       "matchDepTypes": ["requires-python"],
       "groupName": "Python runtime",
       "automerge": false
+    },
+    {
+      "description": "Group non-major uv tool updates from the workflow and Docker image and allow them to automerge.",
+      "matchPackageNames": [
+        "astral-sh/uv",
+        "ghcr.io/astral-sh/uv"
+      ],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "uv",
+      "automerge": true
     }
   ]
 }
