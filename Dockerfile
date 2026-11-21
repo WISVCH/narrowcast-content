@@ -2,7 +2,7 @@
 FROM python:3.14-alpine
 
 # Copy a specific uv release so the lockfile is installed consistently.
-COPY --from=ghcr.io/astral-sh/uv:0.13.9 /uv /uvx /bin/
+COPY --from=ghcr.io/astral-sh/uv:0.13.9@sha256:d3b601f0c7b118bc1753febf7c41cc80981df678445e0254284eecf84db79a7d /uv /uvx /bin/
 
 WORKDIR /app
 
